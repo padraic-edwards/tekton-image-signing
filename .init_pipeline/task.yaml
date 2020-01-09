@@ -52,7 +52,7 @@ spec:
           value: $(inputs.params.registryNamespace)
         - name: IMAGE_NAME
           value: $(inputs.params.imageName)
-      command: ["/bin/sh, "-c"]
+      command: ["/bin/sh", "-c"]
       args:
         - #!/bin/bash
           set -e -o pipefail;
