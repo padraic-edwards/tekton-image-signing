@@ -30,9 +30,9 @@ spec:
       description: The validation signer 
       default: validation_signer
   tasks:
-    - name: pipeline-create-signer
+    - name: InitDCT
       taskRef:
-        name: create-signer-task
+        name: initDCT
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -48,10 +48,10 @@ spec:
           value: $(params.vault_instance)      
         - name: build_signer
           value: $(params.build_signer)  
-    - name: pipeline-validate-signer
-      runAfter: [create-signer-task]
+    - name: IKS_Runtime_Policy
+      runAfter: [InitDCT]
       taskRef:
-        name: validate-task
+        name: IKS_Runtime_Policy
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
