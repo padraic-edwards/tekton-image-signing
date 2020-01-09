@@ -26,9 +26,9 @@ spec:
       description: The Kubernetes cluster namespace
       default: prod
   tasks:
-    - name: pipeline-build-task
+    - name: pipeline-initDCT-task
       taskRef:
-        name: build-task
+        name: initDCT-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -42,10 +42,10 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)          
-    - name: pipeline-validate-task
-      runAfter: [pipeline-build-task]
+    - name: pipeline-cluster-policy-task
+      runAfter: [pipeline-initDCT-task]
       taskRef:
-        name: validate-task
+        name: create-cluster-policy-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
