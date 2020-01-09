@@ -6,6 +6,10 @@ spec:
   params:
     - name: pipeline-pvc
       description: the pipeline pvc name
+    - name: repository
+      description: the git repo
+    - name: revision
+      description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
     - name: registryNamespace
@@ -21,37 +25,10 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
-    - name: vault_instance
-      description: The name of the Key Protect instance
-    - name: build_signer
-      description: The build signer
-      default: build_signer
-    - name: validation_signer
-      description: The validation signer 
-      default: validation_signer
   tasks:
-    - name: InitDCT
+    - name: pipeline-build-task
       taskRef:
-        name: initDCT
-      params:
-        - name: task-pvc
-          value: $(params.pipeline-pvc)
-        - name: revision
-          value: $(params.revision)
-        - name: apikey
-          value: $(params.apikey)
-        - name: registryNamespace
-          value: $(params.registryNamespace)
-        - name: registryRegion
-          value: $(params.registryRegion)
-        - name: vault_instance 
-          value: $(params.vault_instance)      
-        - name: build_signer
-          value: $(params.build_signer)  
-    - name: IKS_Runtime_Policy
-      runAfter: [InitDCT]
-      taskRef:
-        name: IKS_Runtime_Policy
+        name: build-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -64,6 +41,38 @@ spec:
         - name: registryNamespace
           value: $(params.registryNamespace)
         - name: registryRegion
-          value: $(params.registryRegion)
-        - name: validation_signer
-          value: $(params.validation_signer) 
+          value: $(params.registryRegion)          
+    - name: pipeline-validate-task
+      runAfter: [pipeline-build-task]
+      taskRef:
+        name: validate-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryRegion
+          value: $(params.registryRegion)           
+    - name: pipeline-deploy-task
+      runAfter: [pipeline-validate-task]
+      taskRef:
+        name: deploy-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: cluster
+          value: $(params.cluster)
+        - name: clusterRegion
+          value: $(params.clusterRegion)
+        - name: clusterNamespace
+          value: $(params.clusterNamespace)
