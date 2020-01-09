@@ -23,6 +23,14 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
+    - name: vaultInstance
+      description: The name of the Key Protect instance
+    - name: buildSigner
+      description: The build signer
+    - name: validationSigner
+      description: The validation signer
+    - name: resourceGroup
+      description: The resource group
   resourcetemplates:
     - apiVersion: tekton.dev/v1alpha1
       kind: PipelineRun
@@ -50,6 +58,14 @@ spec:
           value: $(params.clusterRegion)
         - name: clusterNamespace
           value: $(params.clusterNamespace)
+        - name: vaultInstance
+          value: $(params.vaultInstance)
+        - name: buildSigner
+          value: $(params.buildSigner)
+        - name: validationSigner
+          value: $(params.validationSigner)
+        - name: resourceGroup
+          value: $(params.resourceGroup)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding

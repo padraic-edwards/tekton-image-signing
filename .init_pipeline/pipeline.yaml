@@ -25,6 +25,14 @@ spec:
     - name: clusterNamespace
       description: The Kubernetes cluster namespace
       default: prod
+    - name: vaultInstance
+      description: The name of the Key Protect instance
+    - name: buildSigner
+      description: The build signer
+    - name: validationSigner
+      description: The validation signer
+    - name: resourceGroup
+      description: The resource group
   tasks:
     - name: pipeline-initDCT-task
       taskRef:
@@ -57,3 +65,11 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)
+        - name: vaultInstance
+          value: $(params.vaultInstance)
+        - name: buildSigner
+          value: $(params.buildSigner)
+        - name: validationSigner
+          value: $(params.validationSigner)
+        - name: resourceGroup
+          value: $(params.resourceGroup) 

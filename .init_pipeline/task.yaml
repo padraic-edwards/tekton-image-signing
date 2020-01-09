@@ -23,7 +23,15 @@ spec:
         description: the base image name
         default: "hello-containers-tekton"
       - name: registryRegion
-        description: the ibmcloud registry region        
+        description: the ibmcloud registry region
+      - name: vaultInstance
+        description: The name of the Key Protect instance
+      - name: buildSigner
+        description: The build signer
+      - name: validationSigner
+        description: The validation signer
+      - name: resourceGroup
+        description: The resource group        
   steps:
     - name: clone-repo
       image: alpine/git
@@ -52,6 +60,14 @@ spec:
           value: $(inputs.params.registryNamespace)
         - name: IMAGE_NAME
           value: $(inputs.params.imageName)
+        - name: VAULT_INSTANCE
+          value: $(inputs.params.vaultInstance)
+        - name: DEVOPS_BUILD_SIGNER
+          value: $(inputs.params.buildSigner)
+        - name: IBMCLOUD_TARGET_RESOURCE_GROUP
+          value: $(inputs.params.resourceGroup)
+        - name: REGION
+          value: $(inputs.params.registryRegion)
       command: ["/bin/bash", "-c"]
       args:
         - #!/bin/bash
