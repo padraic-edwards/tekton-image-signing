@@ -54,8 +54,7 @@ spec:
           value: $(inputs.params.imageName)
       command: ["/bin/sh", "-c"]
       args:
-        - #!/bin/bash
-          set -e -o pipefail;
+        - set -e -o pipefail;
           echo "TEST LOGGING";
       volumeMounts:
         - mountPath: /step-mount
