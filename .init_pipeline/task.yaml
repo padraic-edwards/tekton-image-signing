@@ -57,6 +57,7 @@ spec:
         - #!/bin/bash
           set -e -o pipefail;
           echo "TEST LOGGING";
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/init_dct.sh");
       volumeMounts:
         - mountPath: /step-mount
           name: task-volume
