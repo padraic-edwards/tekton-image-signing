@@ -1,0 +1,69 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: pipeline
+spec:
+  params:
+    - name: pipeline-pvc
+      description: the pipeline pvc name
+    - name: apikey
+      description: the ibmcloud api key
+    - name: registryNamespace
+      description: the ibmcloud registry namespace
+    - name: cluster
+      description: The IBM Cloud Kubernetes cluster name
+    - name: registryRegion
+      description: the ibmcloud registry region
+      default: us-south
+    - name: clusterRegion
+      description: The IBM Cloud Kubernetes cluster region
+      default: us-south
+    - name: clusterNamespace
+      description: The Kubernetes cluster namespace
+      default: prod
+    - name: vault_instance
+      description: The name of the Key Protect instance
+    - name: build_signer
+      description: The build signer
+      default: build_signer
+    - name: validation_signer
+      description: The validation signer 
+      default: validation_signer
+  tasks:
+    - name: pipeline-create-signer
+      taskRef:
+        name: create-signer-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryNamespace
+          value: $(params.registryNamespace)
+        - name: registryRegion
+          value: $(params.registryRegion)
+        - name: vault_instance 
+          value: $(params.vault_instance)      
+        - name: build_signer
+          value: $(params.build_signer)  
+    - name: pipeline-validate-signer
+      runAfter: [create-signer-task]
+      taskRef:
+        name: validate-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryNamespace
+          value: $(params.registryNamespace)
+        - name: registryRegion
+          value: $(params.registryRegion)
+        - name: validation_signer
+          value: $(params.validation_signer) 
