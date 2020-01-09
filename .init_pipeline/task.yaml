@@ -55,7 +55,7 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - set -e -o pipefail;
-          echo "TEST LOGGING"
+          echo "TEST LOGGING";
           source pre-build-check.sh;
       volumeMounts:
         - mountPath: /step-mount
