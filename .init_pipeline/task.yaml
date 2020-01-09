@@ -52,9 +52,10 @@ spec:
           value: $(inputs.params.registryNamespace)
         - name: IMAGE_NAME
           value: $(inputs.params.imageName)
-      command: ["/bin/sh", "-c"]
+      command: ["/bin/bash", "-c"]
       args:
-        - set -e -o pipefail;
+        - #!/bin/bash
+          set -e -o pipefail;
           echo "TEST LOGGING";
       volumeMounts:
         - mountPath: /step-mount
