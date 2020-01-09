@@ -28,7 +28,7 @@ spec:
   tasks:
     - name: pipeline-build-task
       taskRef:
-        name: build-task
+        name: init-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -45,7 +45,7 @@ spec:
     - name: pipeline-validate-task
       runAfter: [pipeline-build-task]
       taskRef:
-        name: validate-task
+        name: cluster-policy-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
