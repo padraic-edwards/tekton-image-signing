@@ -54,7 +54,8 @@ spec:
           value: $(inputs.params.imageName)
       command: ["/bin/bash", "-c"]
       args:
-        - set -e -o pipefail;
+        - #!/bin/bash
+          set -e -o pipefail;
           echo "TEST LOGGING";
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/init_dct.sh");
       volumeMounts:
