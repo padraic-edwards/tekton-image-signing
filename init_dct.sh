@@ -44,7 +44,8 @@ TEMP=$(ibmcloud cr info | awk '{print $3;}')
 echo $TEMP
 echo "2**************"
 # check the existence of the container registry namespace
-REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
+#REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
+REGISTRY_URL="us.icr.io"
 echo "REGISTRY_URL $REGISTRY_URL"
 echo "Check for $REGISTRY_NAMESPACE existence"
 if ibmcloud cr namespaces | tail --lines=+4 | head --lines=-2 | grep "^$REGISTRY_NAMESPACE"; then
