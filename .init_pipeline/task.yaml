@@ -48,7 +48,7 @@ spec:
     - name: pre-build-check
       image: ibmcom/pipeline-base-image
       env:
-        - name: IBMCLOUD_API_KEY
+        - name: IBM_CLOUD_API_KEY
           value: $(inputs.params.apikey)
         - name: API
           value: $(inputs.params.api)
@@ -68,7 +68,7 @@ spec:
           value: $(inputs.params.validationSigner)
         - name: IBMCLOUD_TARGET_RESOURCE_GROUP
           value: $(inputs.params.resourceGroup)
-        - name: REGION
+        - name: REGISTRY_NAMESPACE
           value: $(inputs.params.registryRegion)
       command: ["/bin/bash", "-c"]
       args:
