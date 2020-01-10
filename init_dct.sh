@@ -40,7 +40,8 @@ ibmcloud cr login
 echo "SUCCESSFULLY LOGGED INTO CR"
 ibmcloud cr info
 echo "1**************"
-ibmcloud cr info | grep -m1 -i '^Container Registry'
+TEMP=$(ibmcloud cr info | awk '{print $3;}')
+echo $TEMP
 echo "2**************"
 # check the existence of the container registry namespace
 REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
