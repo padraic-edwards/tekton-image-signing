@@ -62,7 +62,9 @@ spec:
         - name: validationSigner
           value: $(params.validationSigner)
         - name: resourceGroup
-          value: $(params.resourceGroup)          
+          value: $(params.resourceGroup)
+        - name: cluster
+          value: $(params.cluster)         
     - name: pipeline-clusterPolicy-task
       runAfter: [pipeline-initDCT-task]
       taskRef:

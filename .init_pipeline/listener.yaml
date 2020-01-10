@@ -71,6 +71,8 @@ spec:
           value: $(params.validationSigner)
         - name: resourceGroup
           value: $(params.resourceGroup)
+        - name: cluster
+          value: $(params.cluster) 
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding

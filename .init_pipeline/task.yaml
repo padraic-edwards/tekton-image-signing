@@ -33,7 +33,9 @@ spec:
       - name: validationSigner
         description: The validation signer
       - name: resourceGroup
-        description: The resource group        
+        description: The resource group
+      - name: cluster
+        description: The cluster name      
   steps:
     - name: clone-repo
       image: alpine/git
@@ -72,6 +74,8 @@ spec:
           value: $(inputs.params.registryRegion)
         - name: IBMCLOUD_TARGET_REGION
           value: $(inputs.params.region)
+        - name: BUILD_CLUSTER
+          value: $(inputs.params.cluster)
       command: ["/bin/bash", "-c"]
       args:
         - #!/bin/bash
