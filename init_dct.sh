@@ -37,9 +37,10 @@ echo "REGISTRY REGION $REGISTRY_REGION"
 
 # login docker to ibm container registry
 ibmcloud cr login
-
+echo "SUCCESSFULLY LOGGED INTO CR"
 # check the existence of the container registry namespace
 REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry' | awk '{print $3;}')
+echo "REGISTRY_URL $REGISTRY_URL"
 echo "Check for $REGISTRY_NAMESPACE existence"
 if ibmcloud cr namespaces | tail --lines=+4 | head --lines=-2 | grep "^$REGISTRY_NAMESPACE"; then
 echo "$REGISTRY_NAMESPACE exists in $REGISTRY_URL"
