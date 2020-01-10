@@ -1,24 +1,7 @@
 #!/bin/bash
-echo "TEST IMPORT SCRIPT"
 # Get the notary binary
 curl -L https://github.com/theupdateframework/notary/releases/download/v0.6.1/notary-Linux-amd64 -o /usr/local/bin/notary
-echo "CURL COMPLETE"
 # Make it executable
-echo "path content"
-ls /usr/local/bin/notary
-cd /usr
-ls
-echo "**********************"
-cd /usr/local
-ls
-echo "*********************"
-cd /usr/local/bin
-ls
-echo "********************"
-whoami
-
-echo "execute"
-stat /usr/local/bin/notary
 chmod +x /usr/local/bin/notary
 
 export IBMCLOUD_API_KEY=$IBM_CLOUD_API_KEY
@@ -30,19 +13,12 @@ source <(curl -s -S -L "https://raw.githubusercontent.com/open-toolchain/commons
 echo "COMPLETE DIND SETUP"
 
 # configure the container registry
-echo "REGISTRY REGION $REGISTRY_REGION"
 export REGISTRY_REGION=$(echo "$REGISTRY_REGION" | awk -F ':' '{print $NF;}')
 ibmcloud cr region-set $REGISTRY_REGION
 echo "REGISTRY REGION $REGISTRY_REGION"
 
 # login docker to ibm container registry
 ibmcloud cr login
-echo "SUCCESSFULLY LOGGED INTO CR"
-ibmcloud cr info
-echo "1**************"
-TEMP=$(ibmcloud cr info | awk '{print $3;}')
-echo $TEMP
-echo "2**************"
 # check the existence of the container registry namespace
 #REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
 REGISTRY_URL="us.icr.io"
