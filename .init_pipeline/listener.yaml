@@ -15,6 +15,9 @@ spec:
     - name: registryRegion
       description: the ibmcloud registry region
       default: us-south
+    - name: region
+      description: the ibmcloud region
+      default: us-south
     - name: cluster
       description: The IBM Cloud Kubernetes cluster name
     - name: clusterRegion
@@ -52,6 +55,8 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)
+        - name: region
+          value: $(params.region)
         - name: cluster
           value: $(params.cluster)
         - name: clusterRegion

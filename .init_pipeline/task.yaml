@@ -24,6 +24,8 @@ spec:
         default: "hello-containers-tekton"
       - name: registryRegion
         description: the ibmcloud registry region
+      - name: region
+        description: the ibmcloud region
       - name: vaultInstance
         description: The name of the Key Protect instance
       - name: buildSigner
@@ -68,6 +70,8 @@ spec:
           value: $(inputs.params.resourceGroup)
         - name: REGISTRY_REGION
           value: $(inputs.params.registryRegion)
+        - name: IBMCLOUD_TARGET_REGION
+          value: $(inputs.params.region)
       command: ["/bin/bash", "-c"]
       args:
         - #!/bin/bash
