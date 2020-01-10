@@ -82,7 +82,7 @@ spec:
           set -e -o pipefail;
           echo "TEST LOGGING";
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
-          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/init_dct.sh");
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/init_dct.sh");
       volumeMounts:
         - mountPath: /step-mount
           name: task-volume
