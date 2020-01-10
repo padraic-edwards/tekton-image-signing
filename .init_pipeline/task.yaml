@@ -64,6 +64,8 @@ spec:
           value: $(inputs.params.vaultInstance)
         - name: DEVOPS_BUILD_SIGNER
           value: $(inputs.params.buildSigner)
+        - name: DEVOPS_VALIDATION_SIGNER
+          value: $(inputs.params.validationSigner)
         - name: IBMCLOUD_TARGET_RESOURCE_GROUP
           value: $(inputs.params.resourceGroup)
         - name: REGION
