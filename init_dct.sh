@@ -39,9 +39,9 @@ echo "REGISTRY REGION $REGISTRY_REGION"
 ibmcloud cr login
 echo "SUCCESSFULLY LOGGED INTO CR"
 ibmcloud cr info
-echo "**************"
+echo "1**************"
 ibmcloud cr info | grep -m1 -i '^Container Registry'
-echo "**************"
+echo "2**************"
 # check the existence of the container registry namespace
 REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
 echo "REGISTRY_URL $REGISTRY_URL"
