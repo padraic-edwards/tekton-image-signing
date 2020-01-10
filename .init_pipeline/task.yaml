@@ -52,8 +52,6 @@ spec:
           value: $(inputs.params.apikey)
         - name: API
           value: $(inputs.params.api)
-        - name: REGION
-          value: $(inputs.params.registryRegion)
         - name: HOME
           value: "/root"
         - name: REGISTRY_NAMESPACE
@@ -68,14 +66,13 @@ spec:
           value: $(inputs.params.validationSigner)
         - name: IBMCLOUD_TARGET_RESOURCE_GROUP
           value: $(inputs.params.resourceGroup)
-        - name: REGISTRY_NAMESPACE
+        - name: REGISTRY_REGION
           value: $(inputs.params.registryRegion)
       command: ["/bin/bash", "-c"]
       args:
         - #!/bin/bash
           set -e -o pipefail;
           echo "TEST LOGGING";
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/jumpstart/script/init_dct.sh");
       volumeMounts:
         - mountPath: /step-mount
