@@ -1,7 +1,10 @@
 #!/bin/bash
 # uncomment to debug the script
 # set -x
-
+echo "START ADD SIGNER"
+echo "$VAULT_INSTANCE"
+echo "$IBMCLOUD_TARGET_REGION"
+echo "$IBMCLOUD_TARGET_RESOURCE_GROUP"
 VAULT_DATA=$(buildVaultAccessDetailsJSON "$VAULT_INSTANCE" "$IBMCLOUD_TARGET_REGION" "$IBMCLOUD_TARGET_RESOURCE_GROUP")
 echo "VAULT DATA $VAULT_DATA"
 #write repo pem file to trust/private. Only repo key required to add delegate
