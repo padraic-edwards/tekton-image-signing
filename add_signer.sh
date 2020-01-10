@@ -10,6 +10,8 @@ echo "VAULT DATA $VAULT_DATA"
 #write repo pem file to trust/private. Only repo key required to add delegate
 export CURRENT_PATH=$(pwd)
 echo "CURRENT PATH $CURRENT_PATH"
+echo "NAME SPACE: $REGISTRY_NAMESPACE"
+echo "IMAGE NAME: $IMAGE_NAME"
 JSON_REPO_DATA="$(readData "$REGISTRY_NAMESPACE.$IMAGE_NAME.repokeys" "$VAULT_DATA")"
 echo "JSON REPO DATA $JSON_REPO_DATA"
 repokey=$(getJSONValue "target" "$JSON_REPO_DATA")
