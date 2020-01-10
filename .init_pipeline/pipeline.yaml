@@ -49,7 +49,15 @@ spec:
         - name: registryNamespace
           value: $(params.registryNamespace)
         - name: registryRegion
-          value: $(params.registryRegion)          
+          value: $(params.registryRegion)
+        - name: vaultInstance
+          value: $(params.vaultInstance)
+        - name: buildSigner
+          value: $(params.buildSigner)
+        - name: validationSigner
+          value: $(params.validationSigner)
+        - name: resourceGroup
+          value: $(params.resourceGroup)          
     - name: pipeline-clusterPolicy-task
       runAfter: [pipeline-initDCT-task]
       taskRef:
@@ -65,11 +73,3 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)
-        - name: vaultInstance
-          value: $(params.vaultInstance)
-        - name: buildSigner
-          value: $(params.buildSigner)
-        - name: validationSigner
-          value: $(params.validationSigner)
-        - name: resourceGroup
-          value: $(params.resourceGroup) 
