@@ -44,7 +44,7 @@ ibmcloud cr info | grep -m1 -i '^Container Registry'
 echo "**************"
 ibmcloud cr info | grep -m1 -i '^Container Registry' | awk '{print $3;}'
 # check the existence of the container registry namespace
-REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry' | awk '{print $3;}')
+REGISTRY_URL=$(ibmcloud cr info | grep -m1 -i '^Container Registry')
 echo "REGISTRY_URL $REGISTRY_URL"
 echo "Check for $REGISTRY_NAMESPACE existence"
 if ibmcloud cr namespaces | tail --lines=+4 | head --lines=-2 | grep "^$REGISTRY_NAMESPACE"; then
