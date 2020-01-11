@@ -96,8 +96,10 @@ spec:
         - #!/bin/bash
           set -e -o pipefail;
           echo "TEST LOGGING";
-          ls $ARCHIVE_DIR
-          cat $ARCHIVE_DIR/temp.txt
+          ls $ARCHIVE_DIR;
+          cat $ARCHIVE_DIR/temp.txt;
+          ls /artifacts;
+          cat /artifacts/temp.txt;
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/init_dct.sh");
       volumeMounts:
