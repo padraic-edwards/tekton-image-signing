@@ -128,11 +128,11 @@ spec:
           value: $(inputs.params.revision)
         - name: ARCHIVE_DIR
           value: "/artifacts"
-      command: ["/bin/sh", "-c"]
+      command: ["/bin/bash", "-c"]
       args:
-        - set -e -o pipefail;
-          echo "Cloning $REPOSITORY";
-          git clone -q -b $REVISION $REPOSITORY .;
+        - #!/bin/bash
+          set -e -o pipefail;
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh");
       volumeMounts:
         - mountPath: /artifacts
           name: task-volume
