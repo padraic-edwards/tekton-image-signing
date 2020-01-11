@@ -51,14 +51,8 @@ spec:
         - set -e -o pipefail;
           echo "Cloning $REPOSITORY";
           git clone -q -b $REVISION $REPOSITORY .;
-          ls $ARCHIVE_DIR;
           touch $ARCHIVE_DIR/temp.txt;
           echo "sample text" > $ARCHIVE_DIR/temp.txt;
-          ls $ARCHIVE_DIR;
-          ls /artifacts;
-          touch /artifacts/temp.txt;
-          echo "sample text" > /artifacts/temp.txt;
-          ls /artifacts;
       volumeMounts:
         - mountPath: /artifacts
           name: task-volume
@@ -98,8 +92,6 @@ spec:
           echo "TEST LOGGING";
           ls $ARCHIVE_DIR;
           cat $ARCHIVE_DIR/temp.txt;
-          ls /artifacts;
-          cat /artifacts/temp.txt;
           source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/init_dct.sh");
       volumeMounts:
