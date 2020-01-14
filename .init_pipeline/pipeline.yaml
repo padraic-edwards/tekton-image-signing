@@ -64,7 +64,7 @@ spec:
         - name: resourceGroup
           value: $(params.resourceGroup)
         - name: cluster
-          value: $(params.cluster)         
+          value: $(params.cluster)
     - name: pipeline-clusterPolicy-task
       runAfter: [pipeline-initDCT-task]
       taskRef:
@@ -80,3 +80,7 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)
+        - name: prodClusterNamespace
+          value: $(params.prodClusterNamespace)
+        - name: registryNamespace
+          value: $(params.registryNamespace)
