@@ -73,6 +73,8 @@ spec:
           value: $(params.resourceGroup)
         - name: cluster
           value: $(params.cluster) 
+        - name: prodClusterNamespace
+          value: $(params.prodClusterNamespace)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding

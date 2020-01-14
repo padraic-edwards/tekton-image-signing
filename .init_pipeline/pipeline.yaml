@@ -25,9 +25,9 @@ spec:
     - name: clusterRegion
       description: The IBM Cloud Kubernetes cluster region
       default: us-south
-    - name: clusterNamespace
+    - name: buildClusterNamespace
       description: The Kubernetes cluster namespace
-      default: prod
+      default: build
     - name: vaultInstance
       description: The name of the Key Protect instance
     - name: buildSigner
@@ -36,6 +36,9 @@ spec:
       description: The validation signer
     - name: resourceGroup
       description: The resource group
+    - name: prodClusterNamespace
+      description: prod cluster namespace
+      default: prod
   tasks:
     - name: pipeline-initDCT-task
       taskRef:
@@ -80,3 +83,5 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)
+        - name: prodClusterNamespace
+          value: $(params.prodClusterNamespace)
