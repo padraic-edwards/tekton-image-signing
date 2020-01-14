@@ -119,8 +119,8 @@ spec:
       - name: registryRegion
         description: the ibmcloud registry region           
   steps:
-    - name: clone-repo
-      image: alpine/git
+    - name: enforce-image-policy
+      image: ibmcom/pipeline-base-image
       env:
         - name: REPOSITORY
           value: $(inputs.params.repository)
