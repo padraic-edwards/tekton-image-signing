@@ -35,7 +35,9 @@ spec:
       - name: resourceGroup
         description: The resource group
       - name: cluster
-        description: The cluster name      
+        description: The cluster name     
+      - name: prodClusterNamespace
+        description: prod cluster namespace 
   steps:
     - name: clone-repo
       image: alpine/git
