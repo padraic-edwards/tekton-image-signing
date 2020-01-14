@@ -85,10 +85,10 @@ spec:
           value: "/artifacts"
       command: ["/bin/bash", "-c"]
       args:
-        - #!/bin/bash
-          set -e -o pipefail;
-          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh");
-          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/init_dct.sh");
+        - |
+          set -e -o pipefail
+          source <(curl -sSL "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/image_signing/add_docker.sh")
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/init_dct.sh")
       volumeMounts:
         - mountPath: /artifacts
           name: task-volume
@@ -130,9 +130,9 @@ spec:
           value: "/artifacts"
       command: ["/bin/bash", "-c"]
       args:
-        - #!/bin/bash
-          set -e -o pipefail;
-          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh");
+        - |
+          set -e -o pipefail
+          source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh")
       volumeMounts:
         - mountPath: /artifacts
           name: task-volume
