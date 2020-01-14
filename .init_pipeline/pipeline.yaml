@@ -85,3 +85,5 @@ spec:
           value: $(params.registryRegion)
         - name: prodClusterNamespace
           value: $(params.prodClusterNamespace)
+         - name: resourceGroup
+          value: $(params.resourceGroup)
