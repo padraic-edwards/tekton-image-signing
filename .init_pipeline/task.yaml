@@ -132,6 +132,8 @@ spec:
           value: "/artifacts"
         - name: CLUSTER_NAMESPACE
           value: $(inputs.params.prodClusterNamespace)
+        - name: DEFAULT_HELM_VERSION
+          value: 2.13.1
       command: ["/bin/bash", "-c"]
       args:
         - |

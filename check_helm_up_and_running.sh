@@ -27,11 +27,14 @@ else
   echo -e "Helm Tiller ${TILLER_VERSION} already installed in cluster. Keeping it, and aligning client."
   CLIENT_VERSION=${TILLER_VERSION}
 fi
+
+echo "DEFAULT HELM VERSION $DEFAULT_HELM_VERSION"
+echo "CLIENT VERSION $CLIENT_VERSION"
 if [ "${CLIENT_VERSION}" != "${LOCAL_VERSION}" ]; then
   echo -e "Installing Helm client ${CLIENT_VERSION}"
   WORKING_DIR=$(pwd)
   mkdir ~/tmpbin && cd ~/tmpbin
-  curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${CLIENT_VERSION}-linux-amd64.tar.gz -o helm.tar.gz && tar -xvf helm.tar.gz
+  curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${CLIENT_VERSION}-linux-amd64.tar.gz -o helm.tar.gz && tar -xzvf helm.tar.gz
   cd linux-amd64
   export PATH=$(pwd):$PATH
   cd $WORKING_DIR
