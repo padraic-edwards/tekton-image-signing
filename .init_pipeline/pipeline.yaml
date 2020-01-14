@@ -89,3 +89,5 @@ spec:
           value: $(params.resourceGroup)
         - name: region
           value: $(params.region)
+        - name: cluster
+          value: $(params.cluster)

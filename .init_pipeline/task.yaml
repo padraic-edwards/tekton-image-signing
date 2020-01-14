@@ -151,6 +151,8 @@ spec:
           value: $(inputs.params.resourceGroup)
         - name: IBMCLOUD_TARGET_REGION
           value: $(inputs.params.region)
+        - name: CLUSTER_NAME
+          value: $(inputs.params.cluster)
       command: ["/bin/bash", "-c"]
       args:
         - |
@@ -160,7 +162,10 @@ spec:
           echo "API KEY $IBM_CLOUD_API_KEY"
           echo "TARGET REGION $IBMCLOUD_TARGET_REGION"
           ibmcloud login --apikey "$IBM_CLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION"
+          ibmcloud cs init
+          ibmcloud cs clusters
           ibmcloud target -g "$IBMCLOUD_TARGET_RESOURCE_GROUP"
+          $(ibmcloud ks cluster config --cluster "${CLUSTER_NAME}" --export);
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh")
       volumeMounts:
         - mountPath: /artifacts
