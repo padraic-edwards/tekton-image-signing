@@ -85,6 +85,8 @@ spec:
           value: $(inputs.params.cluster)
         - name: ARCHIVE_DIR
           value: "/artifacts"
+        - name: CLUSTER_NAMESPACE
+          value: $(params.prodClusterNamespace)
       command: ["/bin/bash", "-c"]
       args:
         - |
