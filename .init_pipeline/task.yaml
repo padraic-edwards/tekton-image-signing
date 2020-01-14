@@ -128,7 +128,9 @@ spec:
       - name: region
         description: the ibmcloud region  
       - name: resourceGroup
-        description: The resource group      
+        description: The resource group
+      - name: cluster
+        description: The IBM Cloud Kubernetes cluster name    
   steps:
     - name: enforce-image-policy
       image: ibmcom/pipeline-base-image
