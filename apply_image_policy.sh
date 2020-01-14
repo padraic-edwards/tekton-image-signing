@@ -1,7 +1,8 @@
 #!/bin/bash
 #set -x
 
-source <(curl -s -S -L "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/check_helm_up_and_running.sh")
+#source <(curl -s -S -L "https://raw.githubusercontent.com/open-toolchain/commons/master/scripts/check_helm_up_and_running.sh")
+source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/check_helm_up_and_running.sh")
 
 # Install CISE
 if helm list cise | grep '^cise'; then
