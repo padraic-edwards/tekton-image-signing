@@ -35,9 +35,7 @@ spec:
       - name: resourceGroup
         description: The resource group
       - name: cluster
-        description: The cluster name     
-      - name: prodClusterNamespace
-        description: prod cluster namespace 
+        description: The cluster name
   steps:
     - name: clone-repo
       image: alpine/git
@@ -85,8 +83,6 @@ spec:
           value: $(inputs.params.cluster)
         - name: ARCHIVE_DIR
           value: "/artifacts"
-        - name: CLUSTER_NAMESPACE
-          value: $(params.prodClusterNamespace)
       command: ["/bin/bash", "-c"]
       args:
         - |
@@ -121,7 +117,9 @@ spec:
         description: the ibmcloud api endpoint
         default: "https://cloud.ibm.com"
       - name: registryRegion
-        description: the ibmcloud registry region           
+        description: the ibmcloud registry region
+      - name: prodClusterNamespace
+        description: prod cluster namespace         
   steps:
     - name: enforce-image-policy
       image: ibmcom/pipeline-base-image
