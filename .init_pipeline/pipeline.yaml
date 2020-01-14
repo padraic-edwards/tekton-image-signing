@@ -80,7 +80,3 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)
-        - name: prodClusterNamespace
-          value: $(params.prodClusterNamespace)
-        - name: registryNamespace
-          value: $(params.registryNamespace)
