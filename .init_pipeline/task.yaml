@@ -159,7 +159,8 @@ spec:
           echo "RESOURCE GROUP $IBMCLOUD_TARGET_RESOURCE_GROUP"
           echo "API KEY $IBM_CLOUD_API_KEY"
           echo "TARGET REGION $IBMCLOUD_TARGET_REGION"
-          ibmcloud login -a "cloud.ibm.com" -r "$IBMCLOUD_TARGET_REGION" --apikey "$IBM_CLOUD_API_KEY" -g "$IBMCLOUD_TARGET_RESOURCE_GROUP"
+          ibmcloud login --apikey "$IBM_CLOUD_API_KEY" -r "$IBMCLOUD_TARGET_REGION"
+          ibmcloud target -g "$IBMCLOUD_TARGET_RESOURCE_GROUP"
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh")
       volumeMounts:
         - mountPath: /artifacts
