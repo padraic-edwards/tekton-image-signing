@@ -6,6 +6,7 @@
 # That is configures Helm Tiller service to later perform a deploy with Helm.
 
 echo "=========================================================="
+whoami
 echo "CHECKING HELM VERSION: matching Helm Tiller (server) if detected. "
 set +e
 helm version --client
@@ -30,7 +31,7 @@ if [ "${CLIENT_VERSION}" != "${LOCAL_VERSION}" ]; then
   echo -e "Installing Helm client ${CLIENT_VERSION}"
   WORKING_DIR=$(pwd)
   mkdir ~/tmpbin && cd ~/tmpbin
-  curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${CLIENT_VERSION}-linux-amd64.tar.gz -o helm.tar.gz && tar -xzvf helm.tar.gz
+  curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${CLIENT_VERSION}-linux-amd64.tar.gz -o helm.tar.gz && tar -xvf helm.tar.gz
   cd linux-amd64
   export PATH=$(pwd):$PATH
   cd $WORKING_DIR
