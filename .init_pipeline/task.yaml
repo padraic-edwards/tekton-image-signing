@@ -119,7 +119,16 @@ spec:
       - name: registryRegion
         description: the ibmcloud registry region
       - name: prodClusterNamespace
-        description: prod cluster namespace         
+        description: prod cluster namespace
+      - name: apikey
+        description: the ibmcloud api key
+      - name: api
+        description: the ibmcloud api endpoint
+        default: "https://cloud.ibm.com" 
+      - name: region
+        description: the ibmcloud region  
+      - name: resourceGroup
+        description: The resource group      
   steps:
     - name: enforce-image-policy
       image: ibmcom/pipeline-base-image
@@ -134,10 +143,23 @@ spec:
           value: $(inputs.params.prodClusterNamespace)
         - name: DEFAULT_HELM_VERSION
           value: 2.13.1
+        - name: API
+          value: $(inputs.params.api)
+        - name: IBM_CLOUD_API_KEY
+          value: $(inputs.params.apikey)
+        - name: IBMCLOUD_TARGET_RESOURCE_GROUP
+          value: $(inputs.params.resourceGroup)
+        - name: IBMCLOUD_TARGET_REGION
+          value: $(inputs.params.region)
       command: ["/bin/bash", "-c"]
       args:
         - |
           set -e -o pipefail
+          echo "API $API"
+          echo "RESOURCE GROUP $IBMCLOUD_TARGET_RESOURCE_GROUP"
+          echo "API KEY $IBM_CLOUD_API_KEY"
+          echo "TARGET REGION $IBMCLOUD_TARGET_REGION"
+          ibmcloud login -a "$API" -r "$IBMCLOUD_TARGET_REGION" --apikey "$IBM_CLOUD_API_KEY" -g "$IBMCLOUD_TARGET_RESOURCE_GROUP"
           source <(curl -sSL "https://raw.githubusercontent.com/huayuenh/tekton-image-signing/master/apply_image_policy.sh")
       volumeMounts:
         - mountPath: /artifacts
