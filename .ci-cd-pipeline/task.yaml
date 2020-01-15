@@ -65,7 +65,7 @@ spec:
           echo "*******************";
           cat Dockerfile;
           echo "******************";
-          cat deployment.yml
+          cat deployment.yml;
           ibmcloud login -a $API -r $REGION;
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
           source pre-build-check.sh;
