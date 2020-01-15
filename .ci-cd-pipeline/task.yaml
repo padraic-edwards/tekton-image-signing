@@ -35,6 +35,7 @@ spec:
       command: ["/bin/sh", "-c"]
       args:
         - set -e -o pipefail;
+          echo "Print content";
           ls;
           echo "Cloning $REPOSITORY";
           git clone -q -b $REVISION $REPOSITORY .;
@@ -56,6 +57,8 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - set -e -o pipefail;
+          echo "print workdir content";
+          ls;
           ibmcloud login -a $API -r $REGION;
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";
           source pre-build-check.sh;
