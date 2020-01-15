@@ -58,7 +58,7 @@ spec:
         - name: registryRegion
           value: $(params.registryRegion)           
     - name: pipeline-validate-task
-      runAfter: [pipeline-validate-task]
+      runAfter: [pipeline-containerize-task]
       taskRef:
         name: validate-task
       params:
