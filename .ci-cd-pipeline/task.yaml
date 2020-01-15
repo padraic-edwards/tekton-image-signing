@@ -38,6 +38,8 @@ spec:
           echo "Print content";
           ls;
           echo "Cloning $REPOSITORY";
+          echo "REVISION $REVISION";
+
           git clone -q -b $REVISION $REPOSITORY .;
     - name: pre-build-check
       image: ibmcom/pipeline-base-image
