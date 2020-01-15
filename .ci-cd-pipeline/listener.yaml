@@ -52,6 +52,17 @@ spec:
           value: $(params.clusterNamespace)
 ---
 apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: binding
+spec:
+  params:
+    - name: repository
+      value: "https://github.com/open-toolchain/hello-tekton"
+    - name: revision
+      value: "master"
+---
+apiVersion: tekton.dev/v1alpha1
 kind: EventListener
 metadata:
   name: listener
