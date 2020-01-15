@@ -42,7 +42,7 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)          
-    - name: pipeline-containerize-task
+    - name: containerize
       runAfter: [build]
       taskRef:
         name: containerize-task
@@ -58,7 +58,7 @@ spec:
         - name: registryRegion
           value: $(params.registryRegion)           
     - name: pipeline-validate-task
-      runAfter: [pipeline-containerize-task]
+      runAfter: [containerize]
       taskRef:
         name: validate-task
       params:
