@@ -101,7 +101,7 @@ spec:
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: containerize-task
+  name: validate-task
 spec:
   inputs:
     params:
@@ -161,7 +161,7 @@ spec:
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: validate-task
+  name: deploy-task
 spec:
   inputs:
     params:

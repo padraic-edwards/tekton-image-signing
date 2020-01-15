@@ -26,7 +26,7 @@ spec:
       description: The Kubernetes cluster namespace
       default: prod
   tasks:
-    - name: BUILD
+    - name: pipeline-build-task
       taskRef:
         name: build-task
       params:
@@ -42,7 +42,7 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)          
-    - name: CONTAINERIZE
+    - name: pipeline-validate-task
       runAfter: [pipeline-build-task]
       taskRef:
         name: validate-task
@@ -57,7 +57,7 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)           
-    - name: VALIDATE
+    - name: pipeline-deploy-task
       runAfter: [pipeline-validate-task]
       taskRef:
         name: deploy-task
