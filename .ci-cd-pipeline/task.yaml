@@ -39,6 +39,13 @@ spec:
           ls;
           echo "Cloning $REPOSITORY";
           echo "REVISION $REVISION";
+          echo "******************";
+          cat build-docker-image.sh;
+          echo "*******************";
+          cat Dockerfile;
+          echo "******************";
+          cat deployment.yml
+          
 
           git clone -q -b $REVISION $REPOSITORY .;
     - name: pre-build-check
