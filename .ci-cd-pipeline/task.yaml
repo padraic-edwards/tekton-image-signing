@@ -35,6 +35,7 @@ spec:
       command: ["/bin/sh", "-c"]
       args:
         - set -e -o pipefail;
+          ls;
           echo "Cloning $REPOSITORY";
           git clone -q -b $REVISION $REPOSITORY .;
     - name: pre-build-check
