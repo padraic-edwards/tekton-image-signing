@@ -76,7 +76,7 @@ spec:
           value: $(params.clusterRegion)
         - name: clusterNamespace
           value: $(params.clusterNamespace)
-    - name: pipeline-deploy-task
+    - name: deploy
       runAfter: [validate]
       taskRef:
         name: deploy-task
