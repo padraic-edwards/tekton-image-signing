@@ -30,9 +30,9 @@ spec:
       description: The validation signer 
       default: validation_signer
   tasks:
-    - name: pipeline-create-signer
+    - name: BUILD
       taskRef:
-        name: create-signer-task
+        name: build-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -48,10 +48,10 @@ spec:
           value: $(params.vault_instance)      
         - name: build_signer
           value: $(params.build_signer)  
-    - name: pipeline-validate-signer
-      runAfter: [create-signer-task]
+    - name: CONTAINERIZE
+      runAfter: [build-task]
       taskRef:
-        name: validate-task
+        name: containerizer-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -66,4 +66,42 @@ spec:
         - name: registryRegion
           value: $(params.registryRegion)
         - name: validation_signer
-          value: $(params.validation_signer) 
+          value: $(params.validation_signer)
+    - name: VALIDATE
+      runAfter: [containerizer-task]
+      taskRef:
+        name: validate-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryNamespace
+          value: $(params.registryNamespace)
+        - name: registryRegion
+          value: $(params.registryRegion)
+        - name: vault_instance 
+          value: $(params.vault_instance)      
+        - name: build_signer
+          value: $(params.build_signer)  
+    - name: DEPLOY
+      runAfter: [validate-task]
+      taskRef:
+        name: deploy-task
+      params:
+        - name: task-pvc
+          value: $(params.pipeline-pvc)
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: registryNamespace
+          value: $(params.registryNamespace)
+        - name: registryRegion
+          value: $(params.registryRegion)
+        - name: validation_signer
+          value: $(params.validation_signer)
