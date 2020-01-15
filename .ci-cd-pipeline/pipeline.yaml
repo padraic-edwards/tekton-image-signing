@@ -57,7 +57,7 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)           
-    - name: pipeline-validate-task
+    - name: validate
       runAfter: [containerize]
       taskRef:
         name: validate-task
@@ -77,7 +77,7 @@ spec:
         - name: clusterNamespace
           value: $(params.clusterNamespace)
     - name: pipeline-deploy-task
-      runAfter: [pipeline-validate-task]
+      runAfter: [validate]
       taskRef:
         name: deploy-task
       params:
