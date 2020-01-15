@@ -42,10 +42,10 @@ spec:
           value: $(params.registryNamespace)
         - name: registryRegion
           value: $(params.registryRegion)          
-    - name: pipeline-validate-task
+    - name: pipeline-containerize-task
       runAfter: [pipeline-build-task]
       taskRef:
-        name: validate-task
+        name: containerize-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
@@ -57,10 +57,10 @@ spec:
           value: $(params.apikey)
         - name: registryRegion
           value: $(params.registryRegion)           
-    - name: pipeline-deploy-task
+    - name: pipeline-validate-task
       runAfter: [pipeline-validate-task]
       taskRef:
-        name: deploy-task
+        name: validate-task
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
